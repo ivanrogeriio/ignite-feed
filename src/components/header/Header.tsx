@@ -1,4 +1,4 @@
-// CSS
+// Style
 import style from './header.module.css';
 
 // Logo
