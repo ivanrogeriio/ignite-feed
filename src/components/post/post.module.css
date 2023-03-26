@@ -1,0 +1,99 @@
+.post {
+  padding: 2.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  border-radius: 8px;
+  background-color: var(--gray-800);
+}
+
+.post hr {
+  border: 1px solid var(--gray-600);
+}
+
+.comment {
+  line-height: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.form form textarea {
+  width: 100%;
+  height: 6rem;
+
+  padding: 1rem;
+  border: 1px solid var(--green-400);
+  border-radius: 8px;
+  background-color: var(--gray-900);
+  color: var(--gray-100);
+  resize: vertical;
+}
+
+.form form button {
+  width: min-content;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+
+  background-color: var(--green-400);
+  color: var(--gray-100);
+
+  border: none;
+}
+
+.header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header span {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.header article {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header img {
+  width: calc(3rem + 12px);
+  height: calc(3rem + 12px);
+
+  border-radius: 8px;
+  border: 4px solid var(--gray-800);
+  outline: 2px solid var(--green-400);
+}
+
+.header div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.header div strong {
+  font-size: 1rem;
+}
+
+.header div span {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
