@@ -1,31 +1,72 @@
 // Style
-import { Comment } from '../comment/Comment';
 import style from './post.module.css';
 
-export const Post = () => {
+// Component
+import { Comment } from '../comment/Comment';
+import {
+  ContentComment,
+  PostProps,
+} from '../../pages/Home/Home';
+
+// Date-fns
+import {
+  format,
+  formatDistanceToNow,
+} from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
+export const Post = ({
+  author,
+  content,
+  publishedAt,
+}: PostProps) => {
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'min'",
+    {
+      locale: ptBR,
+    },
+  );
+
+  const publishedDateRelativeToNow =
+    formatDistanceToNow(publishedAt, {
+      locale: ptBR,
+      addSuffix: true,
+    });
+
   return (
     <article className={style.post}>
       <header className={style.header}>
         <article>
           <img
-            src='https://media.licdn.com/dms/image/C4E03AQFYw6v359Mlvg/profile-displayphoto-shrink_200_200/0/1549402947351?e=1684972800&v=beta&t=LHgERGwRzlHIfyZVmf97KmmuFL_PNT1XIBpDuPhimSM'
-            alt=''
+            src={author.avatarUrl}
+            alt={author.name}
           />
           <div>
-            <strong>Lucas Simas</strong>
-            <span>LT in Santander</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </article>
-        <span>publicado há 1h</span>
+        <time
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
+        </time>
       </header>
-      <p className={style.comment}>
-        Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Hic, repudiandae odio?
-        Nesciunt fuga ullam amet doloremque
-        repellat dolorum, quasi atque, ipsum enim
-        animi quis! Et aliquid iure voluptatibus
-        eum quas?
-      </p>
+      <div className={style.comment}>
+        {content?.map((line: ContentComment) => {
+          if (line.type === 'paragraph') {
+            return <p>{line.content}</p>;
+          } else if (line.type === 'link') {
+            return (
+              <p>
+                <a href=''>{line.content}</a>
+              </p>
+            );
+          }
+        })}
+      </div>
       <hr />
       <div className={style.form}>
         <strong>Deixe seu feedback</strong>

@@ -14,7 +14,18 @@
 }
 
 .comment {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment p {
   line-height: 1.5rem;
+}
+
+.comment a {
+  font-weight: bold;
+  color: var(--green-400);
 }
 
 .form {
@@ -62,7 +73,7 @@
   justify-content: space-between;
 }
 
-.header span {
+.header time {
   font-size: 0.875rem;
   color: var(--gray-400);
 }
