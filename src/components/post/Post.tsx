@@ -45,14 +45,36 @@ export const Post = ({
   function handleCreateNewComment() {
     event?.preventDefault();
 
-    // Imutabilidade
     setComments([...comments, newCommentText]);
     setNewCommentText('');
   }
 
   function handleNewCommentChange() {
+    event?.target.setCustomValidity(
+      event.target.value,
+    );
     setNewCommentText(event?.target.value);
   }
+
+  function handleNewCommentInvalid() {
+    event?.target.setCustomValidity(
+      'Esse campo é obrigatório!',
+    );
+  }
+
+  function deleteComment(
+    commentToDelete: string,
+  ) {
+    const commentsWithoutDeletedOne =
+      comments.filter((comment) => {
+        return comment !== commentToDelete;
+      });
+
+    setComments(commentsWithoutDeletedOne);
+  }
+
+  const isNewCommentEmpty =
+    newCommentText.length === 0;
 
   return (
     <article className={style.post}>
@@ -104,15 +126,23 @@ export const Post = ({
             name='comment'
             placeholder='Insira aqui sua mensagem'
             value={newCommentText}
+            onInvalid={handleNewCommentInvalid}
+            required
           />
 
-          <button type='submit'>Publicar</button>
+          <button
+            type='submit'
+            disabled={isNewCommentEmpty}
+          >
+            Publicar
+          </button>
         </form>
         {comments.map((comment) => {
           return (
             <Comment
               key={comment}
               content={comment}
+              onDeleteComment={deleteComment}
             />
           );
         })}
