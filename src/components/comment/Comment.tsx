@@ -6,8 +6,27 @@ import {
   Trash,
   HandsClapping,
 } from '@phosphor-icons/react';
+import { useState } from 'react';
 
-export const Comment = () => {
+type CommentProps = {
+  content: string;
+  onDeleteComment: any;
+};
+
+export const Comment = ({
+  content,
+  onDeleteComment,
+}: CommentProps) => {
+  const [clapCount, setClapCount] = useState(0);
+
+  function handleDeleteComment() {
+    onDeleteComment(content);
+  }
+
+  function handleClapComment() {
+    setClapCount(clapCount + 1);
+  }
+
   return (
     <article className={style.comment}>
       <img
@@ -22,17 +41,19 @@ export const Comment = () => {
               <h2>Ivan Rogério</h2>
               <span>Cerca de 2h</span>
             </div>
-            <Trash
-              className={style.icon}
-              size={24}
-            />
+            <button onClick={handleDeleteComment}>
+              <Trash
+                className={style.icon}
+                size={24}
+              />
+            </button>
           </header>
-          <p>Ficou muito da hora!</p>
+          <p>{content}</p>
         </div>
-        <span className={style.aplaudir}>
+        <button onClick={handleClapComment}>
           <HandsClapping size={24} />
-          Aplaudir • 03
-        </span>
+          Aplaudir • <span>{clapCount}</span>
+        </button>
       </div>
     </article>
   );

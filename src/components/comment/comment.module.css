@@ -10,10 +10,6 @@
   border-radius: 8px;
 }
 
-.icon {
-  color: var(--gray-400);
-}
-
 .commentSection {
   width: 100%;
 
@@ -22,14 +18,27 @@
   gap: 1rem;
 }
 
-.commentSection span {
+.commentSection button {
   display: flex;
   align-items: center;
   gap: 0.625rem;
 
+  background-color: transparent;
+  border: none;
   color: var(--gray-400);
   font-weight: 700;
+
+  cursor: pointer;
+  transition: color 0.19s;
 }
+
+.commentSection button:hover {
+  opacity: 0.8;
+}
+
+/* .commentSection button span {
+  content: '',
+} */
 
 .commentBox {
   width: 100%;
@@ -49,11 +58,33 @@
   justify-content: space-between;
 }
 
+.commentBox button {
+  background-color: transparent;
+  border: none;
+}
+
+.icon {
+  color: var(--gray-400);
+}
+
+.icon:hover {
+  transition: color 0.19s;
+  color: var(--red-500);
+}
+
 .commentBox header div h2 {
   font-size: 1rem;
 }
 
 .commentBox header div span {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+.aplaudir {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
   font-size: 0.75rem;
   color: var(--gray-400);
 }
